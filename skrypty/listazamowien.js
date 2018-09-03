@@ -45,17 +45,35 @@ function Wiersz(zamowienie){
     type: 'checkbox',
     value: zamowienie.adresEmail
   });
-  var opis = zamowienie.wielkosc + ' ';
+  var opis = ' [Moc kawy: ' + zamowienie.moc + ']';
+opis += ' ' + zamowienie.wielkosc + ' ';
   if(zamowienie.smak){
     opis += zamowienie.smak + ' ';
   }
   opis += zamowienie.kawa + ' ';
   opis += ' (' + zamowienie.adresEmail + ')';
-  opis += ' [' + zamowienie.moc + 'x]';
+
 
 $etykieta.append($poleWyboru);
 $etykieta.append(opis);
 $div.append($etykieta);
+if(zamowienie.smak == 'karmelowy'){
+
+  $div.css('background', '#ffcc99');
+  $div.css('color', 'white');
+}
+
+if(zamowienie.smak == 'migdalowy'){
+
+  $div.css('background', '#cc9966');
+  $div.css('color', 'white');
+}
+
+if(zamowienie.smak == 'czekoladowy'){
+
+  $div.css('background', '#4E2F2F');
+  $div.css('color', 'white');
+}
 
 this.$element = $div;
 
