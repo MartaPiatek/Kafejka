@@ -13,11 +13,27 @@ function ListaZamowien(selektor){
   }
 }
 
+ListaZamowien.prototype.dodajObslugeKlikniecia = function(fn) {
+  this.$element.on('click', 'input', function(zdarzenie) {
+    var email = event.target.value;
+    this.usunWiersz(email);
+    fn(email);
+  }.bind(this));
+};
+
 ListaZamowien.prototype.dodajWiersz = function(zamowienie) {
 
+this.usunWiersz(zamowienie.adresEmail);
   var elementWiersza = new Wiersz(zamowienie);
   this.$element.append(elementWiersza.$element);
 }
+
+ListaZamowien.prototype.usunWiersz = function(email) {
+  this.$element
+  .find('[value="' + email + '"]')
+  .closest('[data-zamowienie="poleWyboru"]')
+  .remove();
+};
 
 function Wiersz(zamowienie){
   var $div = $('<div></div>', {

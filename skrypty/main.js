@@ -14,6 +14,8 @@ var ListaZamowien = Aplikacja.ListaZamowien;
   window.mojaFurgonetka = mojaFurgonetka;
 
 var listaZamowien = new ListaZamowien(SELEKTOR_LISTY_ZAMOWIEN);
+listaZamowien.dodajObslugeKlikniecia(mojaFurgonetka.zrealizujZamowienie.bind(mojaFurgonetka));
+
   var obslugaFormularza = new ObslugaFormularza(SELEKTOR_FORMULARZA);
   obslugaFormularza.dodajObslugeWysylki(function(dane) {
   mojaFurgonetka.zlozZamowienie.call(mojaFurgonetka, dane);
