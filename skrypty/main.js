@@ -9,17 +9,20 @@
 
   var ObslugaFormularza = Aplikacja.ObslugaFormularza;
 
-var ListaZamowien = Aplikacja.ListaZamowien;
+  var Weryfikacja = Aplikacja.Weryfikacja;
+
+  var ListaZamowien = Aplikacja.ListaZamowien;
   var mojaFurgonetka = new Furgonetka('abc-1001', new BazaDanych());
   window.mojaFurgonetka = mojaFurgonetka;
 
-var listaZamowien = new ListaZamowien(SELEKTOR_LISTY_ZAMOWIEN);
-listaZamowien.dodajObslugeKlikniecia(mojaFurgonetka.zrealizujZamowienie.bind(mojaFurgonetka));
+  var listaZamowien = new ListaZamowien(SELEKTOR_LISTY_ZAMOWIEN);
+  listaZamowien.dodajObslugeKlikniecia(mojaFurgonetka.zrealizujZamowienie.bind(mojaFurgonetka));
 
   var obslugaFormularza = new ObslugaFormularza(SELEKTOR_FORMULARZA);
   obslugaFormularza.dodajObslugeWysylki(function(dane) {
-  mojaFurgonetka.zlozZamowienie.call(mojaFurgonetka, dane);
-  listaZamowien.dodajWiersz.call(listaZamowien, dane);
-});
+    mojaFurgonetka.zlozZamowienie.call(mojaFurgonetka, dane);
+    listaZamowien.dodajWiersz.call(listaZamowien, dane);
+  });
 
+  obslugaFormularza.dodajObslugeZnaku(Weryfikacja.czyAdresFirmowy);
 })(window);
